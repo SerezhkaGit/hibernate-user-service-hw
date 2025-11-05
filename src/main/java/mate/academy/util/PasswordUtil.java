@@ -8,6 +8,9 @@ import java.util.Arrays;
 public class PasswordUtil {
     private static final String HASH_ALGORITHM = "SHA-256";
 
+    private PasswordUtil() {
+    }
+
     public static byte[] getSalt() {
         SecureRandom random = new SecureRandom();
         byte[] salt = new byte[16];
