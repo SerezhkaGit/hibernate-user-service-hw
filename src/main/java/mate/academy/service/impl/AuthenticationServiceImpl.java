@@ -1,5 +1,6 @@
 package mate.academy.service.impl;
 
+import java.util.Optional;
 import mate.academy.exception.AuthenticationException;
 import mate.academy.exception.RegistrationException;
 import mate.academy.lib.Inject;
@@ -8,8 +9,6 @@ import mate.academy.model.User;
 import mate.academy.service.AuthenticationService;
 import mate.academy.service.UserService;
 import mate.academy.util.PasswordUtil;
-
-import java.util.Optional;
 
 @Service
 public class AuthenticationServiceImpl implements AuthenticationService {
@@ -23,7 +22,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         if (userOptional.isEmpty() || !PasswordUtil.isPasswordValid(
                 password, userOptional.get().getPassword(),
                 userOptional.get().getSalt())) {
-           throw new AuthenticationException("Invalid email or password");
+            throw new AuthenticationException("Invalid email or password");
         }
 
         return userOptional.get();
