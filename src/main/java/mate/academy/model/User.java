@@ -1,20 +1,33 @@
 package mate.academy.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+
+@Entity
+@Table(name = "users")
 public class User {
-    String password;
-    String email;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    public User(String password, String email) {
-        this.password = password;
-        this.email = email;
+    @Column(unique = true, nullable = false)
+    private String email;
+
+    private byte[] password;
+
+    private byte[] salt;
+
+    public Long getId() {
+        return id;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getEmail() {
@@ -23,5 +36,32 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public byte[] getPassword() {
+        return password;
+    }
+
+    public void setPassword(byte[] password) {
+        this.password = password;
+    }
+
+    public byte[] getSalt() {
+        return salt;
+    }
+
+    public void setSalt(byte[] salt) {
+        this.salt = salt;
+    }
+
+    @Override
+    public String toString() {
+        return "User{"
+                + "id="
+                + id
+                + ", email='"
+                + email
+                + '\''
+                + '}';
     }
 }
